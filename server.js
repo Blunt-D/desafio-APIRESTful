@@ -12,11 +12,11 @@ const port = 8080
 const app = express()
 
 
-//Middleware
-app.use(express.json())
-app.use('/api', router) 
+//Middleware ORDEN IMPORTA
 app.use(express.urlencoded({extended: true}))
+app.use(express.json())
 app.use("/static", express.static(__dirname + "/public"))
+app.use('/api', router) 
 
 
 app.listen(port, () => {
