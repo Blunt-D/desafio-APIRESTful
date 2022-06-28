@@ -7,18 +7,18 @@ const __filename = fileURLToPath(import.meta.url);
 
 const __dirname = path.dirname(__filename);
 
-const port = 8080
-
+const port = 8080 || process.env.PORT
 const app = express()
 
 
 //Middleware ORDEN IMPORTA
-app.use(express.urlencoded({extended: true}))
 app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+
 app.use("/static", express.static(__dirname + "/public"))
 app.use('/api', router) 
 
 
-app.listen(port, () => {
-    console.log(`El servidor está escuchando en el puerto ${port}`);
+const server = app.listen(port, () => {
+    console.log(`El servidor está escuchando en el puerto ${server.address().port}`);
 })
